@@ -1,5 +1,3 @@
-
-
 -- To Load external data, you need to create an external table. 
 -- The schema uses SQL data types and is strongly typed
 Create External table Aircraft_IMPORT
@@ -15,9 +13,9 @@ Create External table Aircraft_IMPORT
 	[Year] [smallint] NULL)
 With
 (
-data_source = MastData_Stor,     -- Reference the External Data Source that you want to read from
+data_source = alDataSource,     -- Reference the External Data Source that you want to read from
 File_format = pipe,              -- Reference the File Format that the data is in
-location = 'aircraft' -- specify the directory location that you want to read from. PolyBase has traverses all childern directories and files from a stated filepath.
+location = 'demodata\aircraft' -- specify the directory location that you want to read from. PolyBase has traverses all childern directories and files from a stated filepath.
 )
 
 
@@ -47,9 +45,9 @@ Create External table Airport_export
 	[geo] varchar(1000) NULL) 
 With
 (
-data_source = MastData_Stor,
+data_source = alDataSource,
 File_format = pipe,
-location = 'Airport'
+location = 'demodata\Airport'
 )
  
 
@@ -69,9 +67,9 @@ location = 'Airport'
 	[Description] [varchar](100) NULL)
 WITH
 (
-data_source = MastData_Stor,
+data_source = alDataSource,
 File_format = pipe,
-location = 'Carrier'
+location = 'demodata\Carrier'
 )
 
  CREATE TABLE Dim_Carrier
@@ -100,9 +98,9 @@ location = 'Carrier'
 	[Season] [varchar](10) NOT NULL)
 	With
 (
-data_source = MastData_Stor,
+data_source = alDataSource,
 File_format = pipe,
-location = 'date'
+location = 'demodata\date'
 )
 
  CREATE TABLE Dim_Date
@@ -125,9 +123,9 @@ location = 'date'
 	[PartOfDay] [varchar](10) NOT NULL)
 With 
 (
-data_source = MastData_Stor,
+data_source = alDataSource,
 File_format = pipe,
-location = 'Time'
+location = 'demodata\Time'
 )
 
 
@@ -141,8 +139,3 @@ location = 'Time'
 
 
    CREATE Statistics Time_Stat on Dim_Time(id)
-
-
-
-
-
